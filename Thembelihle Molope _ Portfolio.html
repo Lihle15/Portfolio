@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thembelihle Molope | Data analytics &amp; software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff0f8;--card:#fff8fc;--ink:#3d2236;--soft:#7a5f72;--pink:#e05a9a;--deep:#b02a6a;--blush:#f3c9cf;--lilac:#b9a3dc;--cream:#f6e9d3;--line:#f1d3e3;--foot:#3d2236;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1824;--card:#35202e;--ink:#ffe9f4;--soft:#d0b2c4;--line:#4d3042;--foot:#1e101a}}
+:root[data-theme="dark"]{--bg:#2a1824;--card:#35202e;--ink:#ffe9f4;--soft:#d0b2c4;--line:#4d3042;--foot:#1e101a}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Nunito,system-ui,sans-serif;line-height:1.6}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;margin:0;line-height:1.05}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font-family:Fraunces,serif;font-weight:800;font-size:1.2rem;text-decoration:none;display:flex;gap:10px;align-items:center}
+.logo i{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;color:var(--pink);font-style:normal}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+nav ul a{text-decoration:none;color:var(--soft);font-weight:600}
+.btn{display:inline-block;padding:13px 26px;border-radius:99px;background:var(--pink);color:#fff;font-weight:800;text-decoration:none;box-shadow:0 6px 18px #e05a9a40}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:40px 0 72px}
+.tag{display:inline-block;background:#f9d3e6;color:var(--deep);font-weight:800;font-size:.8rem;letter-spacing:.12em;padding:7px 16px;border-radius:99px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag{background:#4d3042;color:#ff9cc9}}
+h1{font-size:clamp(2.8rem,6.5vw,5.2rem);font-weight:800;margin:22px 0}
+h1 em{color:var(--deep);font-weight:700}
+.lede{font-size:1.15rem;color:var(--soft);max-width:34em}
+.row{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0}
+.pills{display:flex;gap:22px;flex-wrap:wrap;color:var(--soft);font-size:.95rem}
+.pills span:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pink);margin-right:8px}
+.art{position:relative;aspect-ratio:1/1.05;border-radius:32px;background:var(--blush);overflow:hidden;box-shadow:0 20px 50px #b02a6a22}
+.art b{position:absolute;display:block}
+.s1{width:46%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 28%,#d9c8f2,var(--lilac));left:8%;top:30%}
+.s2{width:34%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 28%,#f7b4c8,#e07c9c);right:6%;top:42%}
+.s3{width:22%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 28%,#fff1d9,#e9d2ac);left:14%;bottom:12%}
+.s4{width:26%;height:30%;border-radius:14px;background:linear-gradient(#fff3dc,var(--cream));right:12%;top:8%}
+.s5{width:12%;aspect-ratio:1;border-radius:50%;background:var(--lilac);right:20%;top:2%;display:none}
+.code{left:50%;top:50%;transform:translate(-50%,-50%);font-family:Fraunces,serif;font-weight:800;font-size:clamp(4rem,12vw,8.5rem);color:#f7a8c4;text-shadow:0 6px 0 #e58aab,0 14px 24px #b02a6a44;white-space:nowrap}
+.code span{color:#e8467f}
+.hello{right:16px;top:20px;background:var(--card);color:var(--deep);font-weight:800;font-size:.85rem;padding:9px 16px;border-radius:99px;box-shadow:0 6px 16px #0001}
+section{padding:72px 0}
+.kick{color:var(--deep);font-weight:800;font-size:.8rem;letter-spacing:.14em;margin-bottom:10px}
+h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;margin-bottom:36px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:16px 16px 24px}
+.thumb{height:190px;border-radius:20px;margin-bottom:18px;display:grid;place-items:center;font-family:Fraunces,serif;font-weight:800;font-size:1.3rem;color:#fff}
+.t1{background:linear-gradient(135deg,#f7b4c8,#e05a9a)}
+.t2{background:linear-gradient(135deg,#cdbbe8,#8f74c4)}
+.t3{background:linear-gradient(135deg,#f6d9a8,#e79a7a)}
+.card small{color:var(--deep);font-weight:800;font-size:.78rem;letter-spacing:.1em}
+.card h3{font-size:1.6rem;margin:6px 0 8px}
+.card p{margin:0;color:var(--soft)}
+.about{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.about .art{aspect-ratio:1}
+.skills{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0;padding:0;list-style:none}
+.skills li{background:var(--card);border:1px solid var(--line);border-radius:99px;padding:6px 16px;font-weight:600;font-size:.92rem}
+.about p{color:var(--soft);font-size:1.08rem;max-width:36em}
+footer{background:var(--foot);color:#ffe9f4;padding:72px 0 28px;margin-top:40px}
+footer .kick{color:#e9c9ff}
+footer h2{color:#ffe9f4;font-size:clamp(2.2rem,5vw,3.8rem)}
+.contact{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center}
+footer p{color:#d9b9cc;max-width:30em}
+.else{border:1px solid #5a3a4f;border-radius:28px;padding:28px;background:#ffffff0a}
+.else h3{font-size:1.4rem;margin-bottom:12px}
+.else a{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #5a3a4f;text-decoration:none;font-weight:600}
+.else a:first-of-type{border-top:0}
+.else small{display:block;margin-top:14px;color:#c4a2b6}
+.copy{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #5a3a4f;margin-top:56px;padding-top:22px;font-size:.9rem;color:#c4a2b6}
+@media (max-width:860px){.hero,.about,.contact{grid-template-columns:1fr}.cards{grid-template-columns:1fr}nav ul{display:none}.art{max-width:460px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+<a class="logo" href="#top"><i>T</i>Thembelihle Molope</a>
+<ul><li><a href="#work">Work</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+<a class="btn" href="#contact">Say hello</a>
+</nav>
+
+<header class="hero" id="top">
+<div>
+<span class="tag">PORTFOLIO · 2026</span>
+<h1>Turning data into <em>gentle</em>, clear stories.</h1>
+<p class="lede">Hi, I'm Lihle. I'm a data analytics and software student who builds tools that make numbers and AI easier for people to understand and use.</p>
+<div class="row"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="#about">About me</a></div>
+<div class="pills"><span>Data analytics</span><span>Python &amp; SQL</span><span>AI projects</span></div>
+</div>
+<div class="art" aria-hidden="true">
+<b class="s1"></b><b class="s2"></b><b class="s3"></b><b class="s4"></b>
+<b class="code">{<span>♥</span>}</b>
+<b class="hello">hello, I'm Lihle ✦</b>
+</div>
+</header>
+
+<section id="work">
+<div class="kick">SELECTED WORK</div>
+<h2>Things I've built with care</h2>
+<div class="cards">
+<article class="card"><div class="thumb t1">Comic Strip</div><small>AI · WEB APP</small><h3>AI Comic Strip Generator</h3><p>Turns an idea into a four-panel comic. Gemini writes the script and Pollinations draws each panel, all in a single HTML file.</p></article>
+<article class="card"><div class="thumb t2">Sentiment</div><small>AI · DATA INSIGHTS</small><h3>Sentiment Analysis Tool</h3><p>In progress. Reads text, scores the sentiment and turns the results into insights anyone can act on.</p></article>
+<article class="card"><div class="thumb t3">Interview Coach</div><small>AI · GROUP PROJECT</small><h3>IT Interview Coach</h3><p>A chatbot that helps people practise IT interview questions, built with my team during the Clickatell AI Bootcamp.</p></article>
+</div>
+</section>
+
+<section id="about" class="about">
+<div class="art" aria-hidden="true"><b class="s1"></b><b class="s2"></b><b class="s3"></b><b class="s4"></b><b class="code">{<span>♥</span>}</b></div>
+<div>
+<div class="kick">ABOUT</div>
+<h2>Warm by nature, precise by habit.</h2>
+<p>I'm finishing an Advanced Diploma in ICT (Data Analytics) at Durban University of Technology, after completing my National Diploma in Application Development and Information Systems. I'm currently on the CAPACITI Demand 2 Programme in Johannesburg, where I'm also completing the Clickatell AI Bootcamp.</p>
+<ul class="skills"><li>Python</li><li>SQL</li><li>C#</li><li>ASP.NET Core MVC</li><li>HTML/CSS/JS</li><li>Power BI</li><li>Tableau</li><li>Cisco Cybersecurity</li><li>Linux</li></ul>
+</div>
+</section>
+</div>
+
+<footer id="contact">
+<div class="wrap">
+<div class="contact">
+<div>
+<div class="kick">LET'S WORK TOGETHER</div>
+<h2>Have a warm idea? Let's make it real.</h2>
+<p>I'm open to data analytics and development opportunities. Tell me what you're working on and I'll get back to you.</p>
+<div class="row"><a class="btn" href="mailto:your.email@example.com">your.email@example.com</a><a class="btn ghost" href="#work" style="color:#ffe9f4;border-color:#5a3a4f">See the work</a></div>
+</div>
+<div class="else"><h3>Elsewhere</h3>
+<a href="https://github.com/Lihle15">GitHub<span>→</span></a>
+<a href="#">LinkedIn<span>→</span></a>
+<small>Based in Johannesburg, South Africa</small></div>
+</div>
+<div class="copy"><span>© 2026 Thembelihle Molope</span><span>Made with warm tea and good code</span></div>
+</div>
+</footer>
+</body>
+</html>
