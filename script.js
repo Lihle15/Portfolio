@@ -104,6 +104,270 @@ const projects = [
 ];
 
 const projectGrid = document.querySelector('#project-grid');
+const themeToggle = document.querySelector('#theme-toggle');
+const portfolioView = document.querySelector('#portfolio-view');
+const chatView = document.querySelector('#chat-view');
+const navChatButton = document.querySelector('#nav-chat-button');
+const chatBackButton = document.querySelector('#chat-back');
+const chatClearButton = document.querySelector('#chat-clear');
+const chatMessages = document.querySelector('#chat-messages');
+const chatInput = document.querySelector('#chat-input');
+const chatSendButton = document.querySelector('#chat-send');
+const starterChips = document.querySelectorAll('.starter-chip');
+
+const CHAT_ENDPOINT = '/.netlify/functions/chat';
+const MAX_CHAT_HISTORY = 6;
+const MAX_MESSAGE_LENGTH = 500;
+
+const chatState = {
+  messages: [],
+  isLoading: false,
+  lastFocus: null
+};
+
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function renderChatMessages() {
+  if (!chatMessages) return;
+
+  chatMessages.innerHTML = '';
+
+  for (const message of chatState.messages) {
+    const row = document.createElement('div');
+    row.className = `chat-message-row ${message.role === 'user' ? 'user' : ''}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = `chat-message ${message.role}`;
+    bubble.innerHTML = escapeHtml(message.content).replace(/\n/g, '<br>');
+    row.appendChild(bubble);
+    chatMessages.appendChild(row);
+  }
+
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function setTypingIndicator(isVisible) {
+  if (!chatMessages) return;
+
+  const existing = document.querySelector('.chat-message.typing');
+  if (!isVisible && existing) existing.remove();
+
+  if (isVisible) {
+    if (existing) return;
+    const row = document.createElement('div');
+    row.className = 'chat-message-row';
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-message bot typing';
+    bubble.setAttribute('aria-live', 'polite');
+    bubble.innerHTML = '<span></span><span></span><span></span>';
+    row.appendChild(bubble);
+    chatMessages.appendChild(row);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+}
+
+function addChatMessage(role, content) {
+  const safeContent = (content || '').trim();
+  if (!safeContent) return;
+
+  chatState.messages.push({ role, content: safeContent });
+  if (chatState.messages.length > MAX_CHAT_HISTORY) {
+    chatState.messages = chatState.messages.slice(-MAX_CHAT_HISTORY);
+  }
+  renderChatMessages();
+}
+
+function showView(view) {
+  const nextView = view === 'chat' ? 'chat' : 'portfolio';
+  const hash = nextView === 'chat' ? '#chat' : '';
+
+  if (!chatView || !portfolioView) return;
+
+  if (nextView === 'chat') {
+    chatState.lastFocus = document.activeElement;
+    portfolioView.hidden = true;
+    chatView.hidden = false;
+  } else {
+    portfolioView.hidden = false;
+    chatView.hidden = true;
+  }
+
+  if (window.location.hash !== hash) {
+    window.location.hash = hash;
+  }
+
+  navChatButton?.setAttribute('aria-expanded', String(nextView === 'chat'));
+
+  requestAnimationFrame(() => {
+    if (nextView === 'chat') {
+      chatInput?.focus();
+      chatInput?.select();
+      return;
+    }
+
+    if (chatState.lastFocus && typeof chatState.lastFocus.focus === 'function') {
+      chatState.lastFocus.focus();
+    } else {
+      navChatButton?.focus();
+    }
+  });
+}
+
+function syncChatViewFromHash() {
+  const shouldOpen = window.location.hash === '#chat';
+  if (!chatView || !portfolioView) return;
+
+  showView(shouldOpen ? 'chat' : 'portfolio');
+}
+
+async function sendChatRequest() {
+  if (!chatInput) return;
+
+  const value = chatInput.value.trim();
+  if (!value || chatState.isLoading) return;
+
+  const messageText = value.slice(0, MAX_MESSAGE_LENGTH);
+  chatInput.value = '';
+  chatInput.style.height = 'auto';
+  addChatMessage('user', messageText);
+
+  const requestMessages = chatState.messages.slice(-MAX_CHAT_HISTORY);
+  chatState.isLoading = true;
+  setTypingIndicator(true);
+
+  try {
+    const response = await fetch(CHAT_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: requestMessages })
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      const message = data?.error || "I'm having trouble right now. You can reach Lihle at lihlemalopee@gmail.com.";
+      addChatMessage('bot', message);
+      return;
+    }
+
+    const reply = data?.reply || "I'm having trouble right now. You can reach Lihle at lihlemalopee@gmail.com.";
+    addChatMessage('bot', reply);
+  } catch (error) {
+    addChatMessage('bot', "I'm having trouble right now. You can reach Lihle at lihlemalopee@gmail.com.");
+  } finally {
+    chatState.isLoading = false;
+    setTypingIndicator(false);
+    requestAnimationFrame(() => chatInput?.focus());
+  }
+}
+
+function resetChat() {
+  chatState.messages = [];
+  renderChatMessages();
+  chatInput.value = '';
+  chatInput?.focus();
+}
+
+function setTheme(theme) {
+  const safeTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', safeTheme);
+  localStorage.setItem('portfolio-theme', safeTheme);
+
+  if (!themeToggle) return;
+
+  const isDark = safeTheme === 'dark';
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+
+  const icon = themeToggle.querySelector('.theme-toggle-icon');
+  const label = themeToggle.querySelector('.theme-toggle-label');
+
+  const sunIcon = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 2v2.5M12 19.5V22M4.93 4.93l1.77 1.77M17.3 17.3l1.77 1.77M2 12h2.5M19.5 12H22M4.93 19.07l1.77-1.77M17.3 6.7l1.77-1.77"></path>
+    </svg>
+  `;
+
+  const moonIcon = `
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20 15.5A7.5 7.5 0 0 1 8.5 4a7.5 7.5 0 1 0 11.5 11.5Z"></path>
+    </svg>
+  `;
+
+  if (icon) icon.innerHTML = isDark ? moonIcon : sunIcon;
+  if (label) label.textContent = isDark ? 'Dark' : 'Light';
+}
+
+if (themeToggle) {
+  const savedTheme = localStorage.getItem('portfolio-theme');
+  const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  setTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : preferredTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+}
+
+if (navChatButton && chatView) {
+  navChatButton.addEventListener('click', () => {
+    showView(window.location.hash === '#chat' ? 'portfolio' : 'chat');
+  });
+}
+
+if (chatBackButton) {
+  chatBackButton.addEventListener('click', () => showView('portfolio'));
+}
+
+if (chatClearButton) {
+  chatClearButton.addEventListener('click', resetChat);
+}
+
+if (chatSendButton && chatInput) {
+  chatSendButton.addEventListener('click', sendChatRequest);
+
+  chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      sendChatRequest();
+    }
+  });
+
+  chatInput.addEventListener('input', () => {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = `${Math.min(chatInput.scrollHeight, 160)}px`;
+  });
+}
+
+for (const chip of starterChips) {
+  chip.addEventListener('click', () => {
+    if (!chatInput) return;
+    chatInput.value = chip.textContent.trim();
+    chatInput.focus();
+    sendChatRequest();
+  });
+}
+
+window.addEventListener('hashchange', syncChatViewFromHash);
+window.addEventListener('popstate', () => {
+  syncChatViewFromHash();
+});
+showView(window.location.hash === '#chat' ? 'chat' : 'portfolio');
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !chatView.hidden) {
+    event.preventDefault();
+    showView('portfolio');
+  }
+});
 
 function addTextElement(parent, tagName, className, text) {
   const element = document.createElement(tagName);
