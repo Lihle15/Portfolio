@@ -1,0 +1,11 @@
+- Name: Thembelihle Molope, goes by Lihle. Based in Johannesburg, willing to relocate. Available immediately. Languages: English, isiZulu, Sepedi.
+- Direction: aspiring data analyst. Interested in banks and telecoms, and in technology that helps people who are often overlooked.
+- Education: National Diploma in ICT (Application Development and Information Systems), DUT, NQF 6, 2025, 73.75% average and 65.5% distinction rate. Higher Certificate in IT, DUT, 2022, cum laude. Now finishing an Advanced Diploma in ICT (Data Analytics) at DUT, expected end of 2026.
+- Now: on the CAPACITI Demand 2 Programme and the Clickatell AI Bootcamp.
+- Skills: Python, SQL, C#, Java, JavaScript, HTML, CSS, ASP.NET MVC, MySQL, Azure Cosmos DB, Power BI, Tableau, Excel, Cisco networking fundamentals, Linux basics, Azure and AWS fundamentals, SDLC and Agile.
+- Certifications: Introduction to Cybersecurity, Introduction to IoT, NDG Linux Unhatched (all Cisco Networking Academy); Full-Stack Development Certificate (FNB Academy).
+- Projects: EmpowerHer (doctor booking system for women, C#, ASP.NET, MySQL, JavaScript, accessibility focus); Reverse Vending Machine Waste Management System (supports DUT's Envision2030 sustainability goals; C#, ASP.NET MVC, MySQL); RoadToRedemption (team project helping ex-offenders with job placement, digital skills and mentorship); E-Commerce Web Project; Bike Buyers Dashboard (Excel: cleaned 1,026 records, removed 26 duplicates, built pivot tables and a slicer dashboard; found shorter commutes, middle age and fewer cars owned linked to higher bike purchase rates; based on a practice dataset); AI Comic Strip Generator (Gemini for the script, Pollinations for images); IT Interview Coach (team chatbot built on the Clickatell AI Bootcamp); Tic Tac Toe (TODO details); Sentiment Analysis Tool (TODO details).
+- Community: in 2024 she designed and delivered an ICT skills programme for 26 inmates at Pietermaritzburg Medium A Correctional Centre. She also did a 4-day IT department shadowing at EnviroServ through "Take a Girl to Work".
+- Looking for: TODO (role types, industries, start date).
+- Contact: lihlemalopee@gmail.com, GitHub: github.com/Lihle15.
+- Do NOT include her phone number or home address.
