@@ -25,16 +25,30 @@
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <a class="button button-small" href="#contact">Say hello <span aria-hidden="true">↗</span></a>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-label">Light</span>
+        </button>
+        <button class="button button-small nav-chat-button" id="nav-chat-button" type="button" aria-controls="chat-view" aria-expanded="false">
+          <span class="sparkle-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.5l1.8 5.7 5.7 1.8-5.7 1.8L12 17.5l-1.8-5.7L4.5 10l5.7-1.8L12 2.5zm7 12.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6zm-14 0l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6L2 18.5l2.6-.9.9-2.6z"></path>
+            </svg>
+          </span>
+          Ask my AI
+        </button>
+      </div>
     </nav>
   </header>
 
+  <div id="portfolio-view">
   <main id="main">
     <div class="wrap">
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
           <p class="eyebrow hero-tag">Portfolio <span aria-hidden="true">·</span> 2026</p>
-          <h1 id="hero-title">Technology that <em>helps</em> the people it's for.</h1>
+          <h1 id="hero-title">Thembelihle <em>Molope</em> </h1>
           <p class="hero-intro">Hi, I'm Lihle, an ICT graduate heading into data analytics. I build software and data tools for people who are often overlooked, from healthcare access to recycling to getting back into work.</p>
           <div class="button-row">
             <a class="button" href="#work">See the work <span aria-hidden="true">↓</span></a>
@@ -42,13 +56,8 @@
             <a class="button button-outline" href="#about">About me</a>
           </div>
         </div>
-        <div class="art-panel hero-art" aria-hidden="true">
-          <span class="art-sphere art-sphere-lilac"></span>
-          <span class="art-sphere art-sphere-pink"></span>
-          <span class="art-sphere art-sphere-cream"></span>
-          <span class="art-block"></span>
-          <span class="art-code">{ <b>&hearts;</b> }</span>
-          <span class="art-note">made with care <span>✳</span></span>
+        <div class="art-panel hero-art" aria-label="Portrait of Thembelihle Molope">
+          <img class="hero-portrait" src="assets/Lihle_M.jpeg" alt="Portrait of Thembelihle Molope" />
         </div>
       </section>
 
@@ -57,13 +66,13 @@
         <ul>
           <li>Finishing my Advanced Diploma in Information and Communication Technology at DUT</li>
           <li>On the CAPACITI Demand 2 Programme</li>
-          <li>Completing the Clickatell AI Bootcamp</li>
+          <li>Completing the CAPACITI AI Bootcamp</li>
         </ul>
       </section>
 
       <section class="work-section section-space" id="work" aria-labelledby="work-title">
         <p class="eyebrow">Selected work</p>
-        <h2 id="work-title">Things I've built with care</h2>
+        <h2 id="work-title">Things I've built with love</h2>
         <p class="filter-status visually-hidden" id="project-filter-status" aria-live="polite"></p>
         <div class="project-grid" id="project-grid" aria-live="polite"></div>
       </section>
@@ -133,7 +142,7 @@
           <p class="eyebrow">A little about me</p>
           <h2 id="about-title">Warm by nature, precise by habit.</h2>
           <p>I care about technology that genuinely helps people, and data excites me because it shows what decisions should be made. I earned a National Diploma in ICT from DUT with a 73.75% average and a 65.5% distinction rate, after completing a cum laude Higher Certificate. I'm now finishing an Advanced Diploma in Data Analytics.</p>
-          <p>I'm on the CAPACITI Demand 2 Programme and the Clickatell AI Bootcamp. I speak English, isiZulu and Sepedi.</p>
+          <p>I'm on the CAPACITI Demand 2 Programme and the AI Bootcamp. I speak English, isiZulu and Sepedi.</p>
           <h3 class="skills-heading">Tools I work with</h3>
           <ul class="skills-list" aria-label="Skills">
             <li><button class="skill-filter" type="button" data-skill="Python" aria-pressed="false">Python</button></li>
@@ -158,7 +167,7 @@
             <li><span class="timeline-year">2022</span><span>Higher Certificate in IT, cum laude, DUT</span></li>
             <li><span class="timeline-year">2024</span><span>ICT skills training programme for 26 inmates</span></li>
             <li><span class="timeline-year">2025</span><span>National Diploma in ICT, DUT</span></li>
-            <li><span class="timeline-year">2026</span><span>Advanced Diploma in Data Analytics, CAPACITI Demand 2 Programme and Clickatell AI Bootcamp</span></li>
+            <li><span class="timeline-year">2026</span><span>Advanced Diploma in Information and CommunicationTechnology, CAPACITI Demand 2 Programme and CAPACITI AI Bootcamp</span></li>
           </ol>
         </div>
       </section>
@@ -186,13 +195,45 @@
       </div>
     </dialog>
   </main>
+  </div>
+
+  <div class="chat-shell" id="chat-view" hidden>
+    <section class="chat-panel" aria-label="Ask Lihle's AI chat">
+      <header class="chat-header">
+        <div class="chat-header-main">
+          <button class="chat-back" id="chat-back" type="button" aria-label="Back to portfolio">← Back to portfolio</button>
+          <h2>Ask Lihle's AI</h2>
+        </div>
+        <button class="chat-clear" id="chat-clear" type="button">Clear chat</button>
+      </header>
+
+      <p class="chat-note">This is an AI assistant. It answers from information Lihle wrote about herself and can make mistakes.</p>
+
+      <div class="chat-messages" id="chat-messages" aria-live="polite" aria-atomic="false"></div>
+
+      <div class="chat-input-wrap">
+        <div class="starter-chips" aria-label="Suggested questions">
+          <button class="starter-chip" type="button">What projects has Lihle built?</button>
+          <button class="starter-chip" type="button">What is she studying?</button>
+          <button class="starter-chip" type="button">Is she open to relocating?</button>
+          <button class="starter-chip" type="button">What kind of role is she looking for?</button>
+        </div>
+
+        <div class="chat-input-row">
+          <label class="visually-hidden" for="chat-input">Type your message</label>
+          <textarea id="chat-input" rows="1" placeholder="Ask about Lihle..."></textarea>
+          <button class="chat-send" id="chat-send" type="button">Send</button>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer class="site-footer" id="contact">
     <div class="wrap">
       <div class="contact-layout">
         <div class="contact-copy">
           <p class="eyebrow">Let's make something matter</p>
-          <h2>Have a warm idea? Let's make it real.</h2>
+          <h2>Have a fun idea? Let's make it real.</h2>
           <p>I'm open to thoughtful work in data analytics and technology. Send me a note and let's talk.</p>
           <div class="contact-actions">
             <a class="button button-light" href="mailto:lihlemalopee@gmail.com">lihlemalopee@gmail.com <span aria-hidden="true">↗</span></a>
