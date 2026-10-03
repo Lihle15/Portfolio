@@ -1,0 +1,16 @@
+<svg width="800" height="820" viewBox="0 0 800 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="820" rx="56" fill="url(#paint0_linear_1_2)"/>
+  <circle cx="400" cy="308" r="166" fill="#F9E6F1"/>
+  <path d="M252 650C270 565 332 520 400 520C468 520 530 565 548 650V710H252V650Z" fill="#F9E6F1"/>
+  <circle cx="400" cy="288" r="110" fill="#F4C5D8"/>
+  <path d="M322 291C322 242.294 361.294 203 410 203H418C466.706 203 506 242.294 506 291V341C506 379.555 475.555 410 437 410H363C324.445 410 294 379.555 294 341V291H322Z" fill="#D87AA5"/>
+  <path d="M532 650C503 606 436 576 400 576C364 576 296 606 267 650" stroke="#F9E6F1" stroke-width="26" stroke-linecap="round"/>
+  <text x="400" y="760" text-anchor="middle" fill="#3D2236" font-family="Arial, sans-serif" font-size="54" font-weight="700">Your photo here</text>
+  <defs>
+    <linearGradient id="paint0_linear_1_2" x1="118" y1="90" x2="716" y2="788" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E7B9D5"/>
+      <stop offset="0.5" stop-color="#CBA0DA"/>
+      <stop offset="1" stop-color="#F1DCA6"/>
+    </linearGradient>
+  </defs>
+</svg>
